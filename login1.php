@@ -1,46 +1,51 @@
 <?php
 session_start();
-require_once 'config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+// Fungsi untuk memeriksa apakah pengguna sudah login
+function is_logged_in() {
+    return isset($_SESSION['user']);
+}
 
-    try {
-        $sql = "SELECT id, password FROM users WHERE username =?";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+// Fungsi untuk menangani pengecualian
+function handle_exception($exception) {
+    echo "Terjadi kesalahan: " . $exception->getMessage();
+}
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            if (password_verify($password, $row["password"])) {
-                $_SESSION["username"] = $username;
-                header("Location: timeline.php");
-            } else {
-                throw new Exception("Invalid password.");
-            }
-        } else {
-            throw new Exception("User not found.");
-        }
-    } catch (Exception $e) {
-        echo "Error: ". $e->getMessage();
+// Menentukan bahwa fungsi handle_exception akan menangani semua pengecualian
+set_exception_handler('handle_exception');
+
+// Proses login
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Misalnya, lakukan validasi login sederhana di sini
+    if ($username === 'fakhri' && $password === '1234') {
+        $_SESSION['user'] = $username;
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        throw new Exception('Kombinasi username dan password salah');
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
+    <h2>Login</h2>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Login">
     </form>
 </body>
 </html>
+

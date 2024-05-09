@@ -17,21 +17,21 @@
     <?php
     $name = $email = $comment = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = /*bersihkan_input*/($_POST["name"]);
-        $email = /*bersihkan_input*/($_POST["email"]);
-        $comment = /*bersihkan_input*/($_POST["comment"]);
+        $name = bersihkan_input($_POST["name"]);
+        $email = bersihkan_input($_POST["email"]);
+        $comment = bersihkan_input($_POST["comment"]);
         echo("Nama :".$name."<br>");
         echo("Email :".$email."<br>");
         echo("Komentar :".$comment."<br>");
         echo("<hr>");
     }
 
-    /*function bersihkan_input($data) {
+    function bersihkan_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-    }*/
+    }
 
     ?>
 

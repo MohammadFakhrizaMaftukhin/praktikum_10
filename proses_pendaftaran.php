@@ -6,11 +6,11 @@
     <title>Proses Pendaftaran</title>
 </head>
 <body>
-    Selamat datang <b> <?php echo $_GET["nama"]; ?></b><br>
-    NIM : <?php echo $_GET["nim"]; ?><br>
-    Email : <?php echo $_GET["email"]; ?><br>
-    Tempat, Tanggal Lahir : <?php echo $_GET["tempat"]; ?>, <?php echo $_GET["tanggal"]; ?><br>
-    Alamat : <?php echo $_GET["alamat"]; ?><br>
-    Jenis Kelamin : <?php echo $_GET["jenis_kelamin"]; ?><br>
+    Selamat datang <b> <?php echo $_POST["nama"]; ?></b><br>
+    NIM : <?php echo $_POST["nim"]; ?><br>
+    Email : <?php echo $_POST["email"]; ?><br>
+    Tempat, Tanggal Lahir : <?php echo $_POST["tempat"]; ?>, <?php echo $_POST["tanggal"]; ?><br>
+    Alamat : <?php echo $_POST["alamat"]; ?><br>
+    Jenis Kelamin : <?php echo $_POST["jenis_kelamin"]; ?><br>
 </body>
 </html>

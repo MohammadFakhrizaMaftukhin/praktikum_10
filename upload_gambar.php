@@ -6,7 +6,7 @@
     <title>Upload Files</title>
     <meta name="description" content="Belajar PHP">
     <meta name="keywords" content="234311024">
-    <meta name="author" content="Richo Novian Saputra">
+    <meta name="author" content="Mohammad Fakhriza Maftukhin">
 </head>
 <body>
 
